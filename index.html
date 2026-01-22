@@ -5,194 +5,427 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StayNCharge – Destination EV Charging</title>
   <meta name="description" content="StayNCharge helps hotels and communities offer destination EV charging for overnight stays. We handle installation, operations and maintenance." />
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="theme-color" content="#070b14" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png">
+  <link rel="shortcut icon" href="assets/favicon.png">
+
+  <!-- Social preview (optional, but makes links look professional on WhatsApp/LinkedIn) -->
+  <meta property="og:title" content="StayNCharge – Destination EV Charging" />
+  <meta property="og:description" content="Overnight EV charging where guests stay and rest. Partner-friendly model: we handle installation, operations, and maintenance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero.jpg" />
+  <meta property="og:url" content="https://stayncharge.in" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root{
-      --bg:#070b14;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.04);
-      --border:rgba(255,255,255,.12);
-      --text:#eaf1ff;
-      --muted:#b7c8ee;
-      --brand:#9fd0ff;
-      --brand2:#c9a8ff;
-      --good:#7CFFB2;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --bg:#1a1f2e;
+
+      --panel:rgba(255,255,255,.12);
+      --panel2:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.18);
+
+      --text:#e8f0ff;
+      --muted:rgba(180,195,225,.88);
+
+      /* Brand palette - Electric charging inspired colors */
+      --brand:#00d4ff;
+      --brand2:#0099cc;
+      --brand3:#66e0ff;
+
+      --good:#00cc88;
+      --accent:#ff6b35;
+      --electric:#3366ff;
+      
+      --shadow: 0 25px 80px rgba(0,0,0,.25);
+      --shadow2: 0 15px 40px rgba(0,0,0,.18);
+      --glow: 0 0 30px rgba(0,212,255,.18);
+
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1100px 700px at 15% 10%, rgba(159,208,255,.18), transparent 60%),
-        radial-gradient(900px 600px at 85% 10%, rgba(201,168,255,.14), transparent 55%),
-        radial-gradient(900px 600px at 50% 92%, rgba(124,255,178,.10), transparent 55%),
+        radial-gradient(1200px 800px at 15% 10%, rgba(0,212,255,.10), transparent 65%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(51,102,255,.08), transparent 60%),
+        radial-gradient(900px 600px at 50% 90%, rgba(0,255,136,.06), transparent 55%),
         var(--bg);
       color:var(--text);
     }
     a{color:inherit}
-    .wrap{max-width:1120px;margin:0 auto;padding:18px 18px 64px}
+
+    .wrap{max-width:1120px;margin:0 auto;padding:18px 18px 70px}
 
     /* Top bar */
     .topbar{
       display:flex;align-items:center;justify-content:space-between;gap:14px;
       padding:14px 0;
       position:sticky;top:0;
-      backdrop-filter: blur(10px);
-      background: rgba(7,11,20,.55);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      background: rgba(26,31,46,.85);
+      border-bottom:1px solid rgba(255,255,255,.12);
       z-index:50;
     }
     .brand{
       display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px;
+      text-decoration: none;
+      color: inherit;
     }
-    .mark{
-      width:36px;height:36px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(159,208,255,1), rgba(201,168,255,1));
-      box-shadow: 0 10px 35px rgba(159,208,255,.18);
+    .brand img{
+      width:42px;height:42px;border-radius:12px;
+      box-shadow: 0 12px 32px rgba(0,212,255,.25), var(--glow);
+      transition: transform .2s var(--ease);
     }
+    .brand:hover img{
+      transform: scale(1.05);
+    }
+
     .nav{
-      display:flex;gap:14px;flex-wrap:wrap;
-      color:rgba(183,200,238,.95);font-weight:700;font-size:14px;
+      display:flex;gap:12px;flex-wrap:wrap;
+      color:rgba(200,210,235,.92);
+      font-weight:800;font-size:14px;
     }
-    .nav a{text-decoration:none;opacity:.9}
-    .nav a:hover{opacity:1;text-decoration:underline}
     .nav .pill{
       padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
       text-decoration:none;
+      transition: transform .12s var(--ease), border .12s var(--ease), background .12s var(--ease), box-shadow .12s var(--ease);
+    }
+    .nav .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,212,255,.45);
+      background: rgba(0,212,255,.12);
+      box-shadow: var(--glow);
     }
 
     /* Hero */
     .hero{
       margin-top:18px;
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border-radius:24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.08));
+      border-radius: var(--radius-xl);
       overflow:hidden;
       box-shadow: var(--shadow);
+      position:relative;
+      scroll-margin-top: 80px;
     }
+    .hero::before{
+      content:"";
+      position:absolute;inset:-1px;
+      background: linear-gradient(135deg, rgba(0,212,255,.25), rgba(51,102,255,.15));
+      opacity:.65;
+      pointer-events:none;
+    }
+
     .heroGrid{
+      position:relative;
       display:grid;
-      grid-template-columns: 1.12fr .88fr;
+      grid-template-columns: 1fr 1fr;
       gap:0;
-      min-height: 520px;
+      min-height: 460px;
     }
-    .heroLeft{padding:28px}
+    .heroLeft{
+      padding:25px;
+      background: rgba(26,31,46,.15);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
     .badge{
       display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      color:var(--muted);
-      font-weight:800;
-      font-size:13px;
+      padding:10px 16px;border-radius:999px;
+      background: linear-gradient(135deg, rgba(0,212,255,.20), rgba(51,102,255,.15));
+      border:1px solid rgba(0,212,255,.30);
+      color:rgba(200,230,255,.98);
+      font-weight:900;
+      font-size:14px;
+      box-shadow: 0 8px 24px rgba(0,212,255,.15);
     }
     .badge .dot{width:8px;height:8px;border-radius:99px;background:var(--good)}
     h1{
-      margin:14px 0 10px;
-      font-size:46px;line-height:1.06;
-      letter-spacing:-.6px;
+      margin:18px 0 12px;
+      font-size:48px;line-height:1.05;
+      letter-spacing:-.7px;
+      color:#ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.3);
     }
     .sub{
       margin:0;
-      color:var(--muted);
+      color:rgba(220,230,245,.94);
       font-size:18px;
-      line-height:1.65;
-      max-width:680px;
+      line-height:1.75;
+      max-width:700px;
+      background: rgba(255,255,255,.05);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border-left: 3px solid var(--brand);
     }
-    .ctaRow{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    .ctaRow{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
     .btn{
       display:inline-flex;align-items:center;gap:10px;
-      padding:12px 16px;border-radius:14px;
+      padding:12px 16px;border-radius: var(--radius-md);
       border:1px solid rgba(255,255,255,.14);
       text-decoration:none;font-weight:900;
       background:rgba(255,255,255,.06);
-      transition: transform .15s ease, filter .15s ease;
+      transition: transform .15s var(--ease), filter .15s var(--ease), border .15s var(--ease), background .15s var(--ease);
       will-change: transform;
     }
-    .btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(159,208,255,1), rgba(201,168,255,1));
-      color:#081020;border:none;
-      box-shadow: 0 16px 44px rgba(159,208,255,.16);
+    .btn:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.03);
+      border-color: rgba(0,212,255,.45);
+      background: rgba(0,212,255,.10);
+      box-shadow: var(--glow);
     }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#ffffff;border:none;
+      box-shadow: 0 20px 50px rgba(0,212,255,.30), var(--glow);
+      font-size: 15px;
+      padding: 14px 20px;
+    }
+    .btn.primary:hover{
+      filter:brightness(1.10);
+      transform:translateY(-2px);
+      box-shadow: 0 25px 60px rgba(0,212,255,.40), 0 0 40px rgba(0,212,255,.25);
+    }
+
     .mini{
       display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
-      color:rgba(183,200,238,.9);font-weight:700;font-size:13px
+      color:rgba(180,195,225,.90);font-weight:800;font-size:13px
     }
     .mini span{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 10px;border-radius:999px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
     }
+
     .heroRight{
       position:relative;
-      min-height: 320px;
+      min-height: 460px;
       background:
-        linear-gradient(180deg, rgba(7,11,20,.25), rgba(7,11,20,.85)),
-        url("assets/hero.jpg");
+        linear-gradient(180deg, rgba(26,31,46,.15), rgba(26,31,46,.45)),
+        url("assets/logo.png");
       background-size: cover;
       background-position: center;
     }
     .heroRight::after{
       content:"";
       position:absolute;inset:0;
-      background: radial-gradient(800px 400px at 50% 20%, rgba(159,208,255,.16), transparent 60%);
+      background: radial-gradient(900px 450px at 50% 20%, rgba(0,212,255,.12), transparent 70%);
       pointer-events:none;
     }
     .heroCard{
       position:absolute;left:18px;right:18px;bottom:18px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(7,11,20,.55);
-      backdrop-filter: blur(10px);
-      border-radius:18px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(26,31,46,.85);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius-lg);
       padding:14px;
+      box-shadow: var(--shadow2);
     }
-    .heroCard .t{font-weight:900;margin:0 0 6px}
-    .heroCard .d{margin:0;color:rgba(183,200,238,.92);line-height:1.5;font-size:14px}
+    .heroCard .t{font-weight:950;margin:0 0 6px;color:var(--text)}
+    .heroCard .d{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
 
     /* Sections */
-    .section{margin-top:18px}
+    .section{
+      margin-top:22px;
+      scroll-margin-top: 80px;
+    }
     .sectionHead{
       display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      margin:16px 2px 10px;
+      margin:16px 2px 12px;
     }
     .sectionHead h2{margin:0;font-size:22px;letter-spacing:-.2px}
-    .sectionHead p{margin:0;color:rgba(183,200,238,.9);max-width:640px;line-height:1.6}
+    .sectionHead p{margin:0;color:rgba(203,216,244,.88);max-width:660px;line-height:1.65}
+
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
     .card{
       border:1px solid var(--border);
       background: var(--panel);
-      border-radius:18px;
+      border-radius: var(--radius-lg);
       padding:18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      box-shadow: var(--shadow2);
     }
     .card.soft{background: var(--panel2)}
     .card h3{margin:0 0 8px;font-size:16px}
-    .card p{margin:0;color:var(--muted);line-height:1.65}
+    .card p{margin:0;color:var(--muted);line-height:1.7}
+
     .imgCard{
-      display:grid;grid-template-columns:1fr;gap:14px;
-      padding:0;overflow:hidden;
+      padding:0;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      flex-direction:column;
     }
     .imgTop{
-      height:210px;
-      background-size:cover;background-position:center;
-      filter:saturate(1.05);
+      height:280px;
+      position:relative;
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05) contrast(1.03);
     }
-    .imgBody{padding:18px}
-    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.7}
+    .imgTop::after{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(180deg, transparent 40%, rgba(26,31,46,.60) 100%);
+      pointer-events:none;
+    }
+    .imgBody{
+      position:relative;
+      padding:20px;
+      background: var(--panel);
+      flex:1;
+    }
+    .imgBody h3{
+      color:var(--text);
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    .imgBody p{
+      color:var(--muted);
+      margin:0 0 12px;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .imgBody ul{
+      color:var(--muted);
+      font-size:14px;
+      margin:10px 0 0 18px;
+    }
+    .imgBody li{
+      margin:6px 0;
+    }
+    
+    /* Image Roll Carousel */
+    .image-roll{
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow2);
+    }
+    .image-carousel{
+      display: flex;
+      transition: transform 0.5s var(--ease);
+    }
+    .image-slide{
+      min-width: 100%;
+      height: 240px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .image-slide::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(26,31,46,.85));
+    }
+    .slide-caption{
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 10;
+    }
+    .carousel-dots{
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .carousel-dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      cursor: pointer;
+      transition: background .3s var(--ease);
+    }
+    .carousel-dot.active{
+      background: var(--brand);
+    }
+    
+    /* Image Roll Carousel */
+    .image-roll{
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow2);
+    }
+    .image-carousel{
+      display: flex;
+      transition: transform 0.5s var(--ease);
+    }
+    .image-slide{
+      min-width: 100%;
+      height: 240px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .image-slide::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(26,31,46,.85));
+    }
+    .slide-caption{
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 10;
+    }
+    .carousel-dots{
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .carousel-dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      cursor: pointer;
+      transition: background .3s var(--ease);
+    }
+    .carousel-dot.active{
+      background: var(--brand);
+    }
+
+    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
     li{margin:8px 0}
 
     /* Tabs */
     .tabs{
       border:1px solid var(--border);
       background: rgba(255,255,255,.05);
-      border-radius:20px;
+      border-radius: 20px;
       overflow:hidden;
+      box-shadow: var(--shadow2);
     }
     .tabBar{
       display:flex;gap:8px;flex-wrap:wrap;
@@ -202,46 +435,85 @@
       backdrop-filter: blur(10px);
     }
     .tabBtn{
-      appearance:none;border:1px solid rgba(255,255,255,.12);
+      appearance:none;
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
       color: rgba(234,241,255,.92);
       padding:10px 12px;border-radius:999px;
-      font-weight:900;font-size:13px;
+      font-weight:950;font-size:13px;
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border .12s ease;
+      transition: transform .12s var(--ease), background .12s var(--ease), border .12s var(--ease), filter .12s var(--ease);
     }
-    .tabBtn:hover{transform:translateY(-1px)}
+    .tabBtn:hover{transform:translateY(-1px);filter:brightness(1.05)}
     .tabBtn.active{
-      background: linear-gradient(135deg, rgba(159,208,255,.95), rgba(201,168,255,.95));
-      color:#081020;border:none;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#ffffff;border:none;
+      box-shadow: var(--glow);
     }
-    .tabBody{
-      padding:18px;
-      position:relative;
-    }
-    .tabPanel{
-      display:none;
-      animation: fadeUp .18s ease forwards;
-    }
+    .tabBody{padding:18px}
+    .tabPanel{display:none;animation: fadeUp .20s var(--ease) forwards}
     .tabPanel.active{display:block}
     @keyframes fadeUp{
-      from{opacity:0;transform:translateY(6px)}
+      from{opacity:0;transform:translateY(8px)}
       to{opacity:1;transform:translateY(0)}
     }
 
+    /* FAQ accordion */
+    .faqItem{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .faqQ{
+      width:100%;
+      text-align:left;
+      padding:14px 14px;
+      background: transparent;
+      border:0;
+      color: rgba(234,241,255,.96);
+      font-weight:950;
+      font-size:14px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .faqA{
+      max-height:0;
+      overflow:hidden;
+      transition: max-height .28s var(--ease);
+      padding:0 14px;
+      color: rgba(203,216,244,.92);
+      line-height:1.7;
+    }
+    .faqA p{margin:0;padding:0 0 14px}
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(234,241,255,.75);
+      border-bottom:2px solid rgba(234,241,255,.75);
+      transform: rotate(45deg);
+      transition: transform .18s var(--ease);
+      flex:0 0 auto;
+    }
+    .faqItem.open .chev{transform: rotate(225deg)}
+    .faqItem.open .faqA{max-height:260px}
+
     /* Scroll reveal */
-    .reveal{opacity:0;transform:translateY(12px);transition: opacity .45s ease, transform .45s ease}
+    .reveal{opacity:0;transform:translateY(14px);transition: opacity .55s var(--ease), transform .55s var(--ease)}
     .reveal.on{opacity:1;transform:translateY(0)}
 
     /* Footer */
     .footer{
       margin-top:18px;
       display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      color:rgba(183,200,238,.92);font-size:13px
+      color:rgba(203,216,244,.92);font-size:13px
     }
     .contactLine{
       display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;
-      color:rgba(183,200,238,.95);font-weight:800;font-size:14px
+      color:rgba(203,216,244,.95);font-weight:900;font-size:14px
     }
     .contactLine a{text-decoration:none}
     .contactLine a:hover{text-decoration:underline}
@@ -263,14 +535,14 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">
-        <div class="mark"></div>
+      <a href="#" class="brand">
+        <img src="assets/favicon.png" alt="StayNCharge logo">
         <div>StayNCharge</div>
-      </div>
+      </a>
       <div class="nav">
-        <a class="pill" href="#advantages">Why AC</a>
-        <a class="pill" href="#partners">For Hotels</a>
-        <a class="pill" href="#how">How it Works</a>
+        <a class="pill" href="#advantages">Where is this applicable?</a>
+        <a class="pill" href="#how">Why StayNCharge ?</a>
+        <a class="pill" href="#faq">FAQ</a>
         <a class="pill" href="#contact">Contact</a>
       </div>
     </div>
@@ -279,34 +551,50 @@
     <section class="hero reveal on">
       <div class="heroGrid">
         <div class="heroLeft">
-          <div class="badge"><span class="dot"></span> Destination EV Charging for Hotels & Communities</div>
-          <h1>Overnight EV charging where guests stay and rest.</h1>
-          <p class="sub">
-            We build <b>destination EV charging</b> designed for overnight stays (not highway fast charging).
-            <br/>Partner-friendly model: we handle installation, operations, and maintenance.
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn primary" href="mailto:partnerships@stayncharge.in?subject=StayNCharge%20%E2%80%93%20Destination%20EV%20Charging%20Partnership">
-              Email Partnerships
-            </a>
-            <a class="btn" href="#contact">Request a 15-minute call</a>
+          <div class="badge">
+            <span class="dot"></span> Destination EV Charging
           </div>
 
-          <div class="mini">
-            <span>✅ Overnight-friendly</span>
-            <span>✅ Low electrical stress</span>
-            <span>✅ Transparent revenue share</span>
+          <h3 style="
+            margin:12px 0 8px;
+            font-size:32px;
+            line-height:1.2;
+            color:#ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,.25);
+            font-weight:800;
+          ">EV charging designed for longer stays</h3>
+
+          <p class="sub">
+            Destination EV charging focuses on locations where vehicles remain parked for hours.
+            Instead of fast, high-stress charging, it enables steady and practical energy delivery
+            while people rest, work, or stay overnight.
+          </p>
+
+          <ul style="
+            margin:20px 0 0 0;
+            padding:16px 20px;
+            color:rgba(220,230,245,.92);
+            line-height:1.8;
+            font-size:15px;
+            list-style:none;
+            background: rgba(255,255,255,.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.12);
+          ">
+            <li>🏨 Built for long-duration parking, not quick turnaround</li>
+            <li>🔌 Aligned with real-world EV onboard charger limits</li>
+            <li>🌱 Lower stress on batteries, electrical systems & safer grid integration</li>
+          </ul>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="mailto:partnerships@stayncharge.in?subject=Partnership%20Inquiry">
+              Get Partnership Details
+            </a>
+            <a class="btn" href="#contact">Schedule a 15-min call</a>
           </div>
         </div>
 
         <div class="heroRight" aria-label="EV charging at a hotel">
-          <div class="heroCard">
-            <p class="t">Built for real-world Indian vehicles</p>
-            <p class="d">
-              Many cars are limited by onboard charger (OBC) power. AC destination charging matches how guests actually stay—slow, safe, and practical.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -314,13 +602,13 @@
     <!-- TABS: WHY AC / ADVANTAGES -->
     <section id="advantages" class="section reveal">
       <div class="sectionHead">
-        <h2>Why destination AC charging wins (for hotels + guests)</h2>
-        <p>These are the exact advantages you were highlighting—structured and easy to understand.</p>
+        <h2>Where is it applicable ?</h2>
+        <!-- <p>Simple benefits that matter to your business.</p> -->
       </div>
 
       <div class="tabs">
         <div class="tabBar">
-          <button class="tabBtn active" data-tab="tab-1">Guest Fit</button>
+          <button class="tabBtn active" data-tab="tab-1">Communities Fit</button>
           <button class="tabBtn" data-tab="tab-2">Hotel Fit</button>
           <button class="tabBtn" data-tab="tab-3">Grid + Safety</button>
           <button class="tabBtn" data-tab="tab-4">Vehicle Reality</button>
@@ -328,59 +616,51 @@
 
         <div class="tabBody">
           <div id="tab-1" class="tabPanel active">
-            <h3>Guest Fit: overnight is the natural charging window</h3>
+            <h3>Community Fit: overnight is the natural charging window</h3>
             <ul>
-              <li>Guests stay for hours—charging can happen quietly in the background.</li>
-              <li>No waiting line stress like highway DC fast chargers.</li>
-              <li>Perfect for tourism / pilgrimage endpoints (guests arrive, park, rest).</li>
+              <li>Residents/Guests stay for hours—charging happens quietly in the background.</li>
+              <li>No “queue & wait” stress like highway fast charging.</li>
+              <li>Perfect for communities with shared parking and long dwell times.</li>
             </ul>
           </div>
 
           <div id="tab-2" class="tabPanel">
             <h3>Hotel Fit: low operations, high amenity value</h3>
             <ul>
-              <li>Charging becomes an amenity (like Wi-Fi) — not a complex infrastructure project.</li>
-              <li>Lower site upgrade needs vs DC fast charging.</li>
-              <li>Cleaner experience at parking: less cable mess, fewer complaints.</li>
+              <li>Charging becomes an amenity (like Wi-Fi), not a complex project.</li>
+              <li>Cleaner parking experience: fewer issues, fewer complaints.</li>
+              <li>Perfect for tourism/pilgrimage endpoints: arrive, park, rest, charge.</li>
             </ul>
           </div>
 
           <div id="tab-3" class="tabPanel">
-            <h3>Grid + Safety: lower current, lower stress</h3>
+            <h3>Grid + Safety: lower peak demand</h3>
             <ul>
               <li>Lower peak demand reduces the risk of tripping / overloading.</li>
               <li>Safer thermal profile for cabling and distribution.</li>
-              <li>Better for hotels where power is shared across HVAC, kitchens, lifts, etc.</li>
+              <li>Better for Comunities/hotels where power is shared across HVAC, kitchen, lifts, etc.</li>
             </ul>
           </div>
 
           <div id="tab-4" class="tabPanel">
             <h3>Vehicle Reality: the car decides the AC rate (OBC limit)</h3>
             <ul>
-              <li>If a car’s onboard charger is 3.3 kW, it won’t draw 7.4/11/22 kW even if the charger supports it.</li>
-              <li>That’s why AC destination charging works well as a standard offering.</li>
+              <li>If a car’s OBC is 3.3 kW, it won’t draw 7.4/11/22 kW even if available.</li>
+              <li>AC destination charging works as a standard offering for most vehicles.</li>
               <li>Fast charging can be added later when utilization justifies it.</li>
             </ul>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- PARTNER SECTIONS -->
-    <section id="partners" class="section reveal">
-      <div class="sectionHead">
-        <h2>Made for hotels and communities</h2>
-        <p>Two clear partner offerings, with visuals and benefits.</p>
-      </div>
-
-      <div class="grid2">
+      <div class="grid2" style="margin-top: 20px;">
         <div class="card imgCard soft">
           <div class="imgTop" style="background-image:url('assets/hotel.jpg')"></div>
           <div class="imgBody">
-            <h3>Hotels (3–4 star focus)</h3>
+            <h3>Hotels</h3>
             <p>Add a premium amenity for EV-driving guests with minimal operational burden.</p>
             <ul>
-              <li>Attract guests searching “hotel with EV charging”</li>
+              <li>Attract guests searching "hotel with EV charging"</li>
               <li>Boost reviews + repeat bookings</li>
               <li>Revenue share per unit charged</li>
             </ul>
@@ -390,11 +670,11 @@
         <div class="card imgCard soft">
           <div class="imgTop" style="background-image:url('assets/community.jpg')"></div>
           <div class="imgBody">
-            <h3>Communities / Apartments</h3>
-            <p>Simple overnight charging for residents (two-wheelers + four-wheelers).</p>
+            <h3>Apartment/Villa Communities</h3>
+            <p>Simple overnight charging for residents (2W + 4W).</p>
             <ul>
               <li>Resident convenience</li>
-              <li>Controlled access (RFID / app based, if needed)</li>
+              <li>Exclusive access to the community members/guests</li>
               <li>Usage visibility and reporting</li>
             </ul>
           </div>
@@ -405,26 +685,85 @@
     <!-- HOW IT WORKS -->
     <section id="how" class="section reveal">
       <div class="sectionHead">
-        <h2>How it works</h2>
-        <p>A simple, non-technical process (hotel-friendly).</p>
+        <h2>Why StayNCharge?</h2>
       </div>
 
-      <div class="grid2">
-        <div class="card">
-          <h3>1) Site check</h3>
-          <p>We review power availability, parking layout, and guest flow. We keep it lightweight and practical.</p>
+      <div class="card">
+        <div class="faqItem">
+          <button class="faqQ" type="button">1) Comprehensive Site Assessment <span class="chev"></span></button>
+          <div class="faqA">
+            <p>Our technical team conducts a detailed evaluation of your property to ensure optimal charging infrastructure placement and performance.</p>
+            <ul>
+              <li><strong>Electrical capacity analysis:</strong> Review existing power distribution, available capacity, and load management requirements</li>
+              <li><strong>Parking layout optimization:</strong> Identify best locations for charger placement considering guest convenience and operational flow</li>
+              <li><strong>Guest experience mapping:</strong> Design charging access points that integrate seamlessly with check-in/check-out processes</li>
+              <li><strong>Future scalability planning:</strong> Assess potential for expansion based on demand and electrical infrastructure</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <h3>2) Install + commission</h3>
-          <p>We install the setup and make it ready for guests. Front-office gets a simple usage workflow.</p>
+
+        <div class="faqItem">
+          <button class="faqQ" type="button">2) Professional Installation & Commissioning <span class="chev"></span></button>
+          <div class="faqA">
+            <p>Complete turnkey installation with minimal disruption to your daily operations, handled by certified technicians and approved contractors.</p>
+            <ul>
+              <li><strong>Electrical infrastructure:</strong> Safe installation of charging units, electrical connections, and safety systems with all necessary permits</li>
+              <li><strong>Smart charging technology:</strong> IoT-enabled chargers with remote monitoring, user authentication, and payment processing capabilities</li>
+              <li><strong>Staff training & workflows:</strong> Comprehensive training for front desk staff on guest charging procedures and basic troubleshooting</li>
+              <li><strong>Testing & certification:</strong> Complete system testing, safety verification, and regulatory compliance certification before go-live</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <h3>3) Operate + maintain</h3>
-          <p>We handle monitoring, support and maintenance. The property stays out of daily operations.</p>
+
+        <div class="faqItem">
+          <button class="faqQ" type="button">3) Complete Operations & Maintenance <span class="chev"></span></button>
+          <div class="faqA">
+            <p>Full operational responsibility ensuring your property stays focused on hospitality while we handle all charging-related activities and guest support.</p>
+            <ul>
+              <li><strong>24/7 monitoring & support:</strong> Real-time system monitoring with immediate response to technical issues and guest inquiries</li>
+              <li><strong>Customer service management:</strong> Direct guest support for charging-related questions, billing issues, and technical assistance</li>
+              <li><strong>Preventive maintenance:</strong> Regular maintenance schedules, software updates, and component replacement to ensure 99%+ uptime</li>
+              <li><strong>Performance optimization:</strong> Continuous monitoring of usage patterns and system performance with proactive improvements</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <h3>4) Transparent revenue share</h3>
-          <p>Monthly reporting + a clear revenue share model. No confusion, no hidden surprises.</p>
+
+        <div class="faqItem">
+          <button class="faqQ" type="button">4) Transparent Revenue Sharing & Reporting <span class="chev"></span></button>
+          <div class="faqA">
+            <p>Clear, transparent financial model with detailed reporting and consistent revenue sharing that grows with your property's success.</p>
+            <ul>
+              <li><strong>Monthly detailed reports:</strong> Comprehensive usage analytics, revenue breakdown, guest demographics, and performance metrics</li>
+              <li><strong>Transparent pricing model:</strong> Clear revenue sharing structure with no hidden fees, setup costs, or surprise charges</li>
+              <li><strong>Growth-based partnerships:</strong> Revenue sharing that scales with usage, encouraging mutual success and long-term partnership</li>
+              <li><strong>Business intelligence:</strong> Access to charging trends, guest satisfaction data, and recommendations for optimizing the charging experience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section reveal">
+      <div class="sectionHead">
+        <h2>FAQ</h2>
+        <!-- <p>Quick answers that hotel owners usually ask on the first call.</p> -->
+      </div>
+
+      <div class="card">
+        <div class="faqItem">
+          <button class="faqQ" type="button">Do Hotels/Communities need to invest upfront? <span class="chev"></span></button>
+          <div class="faqA"><p>No. Our goal is a partner-friendly model where we handle installation, operations, and maintenance. Commercial terms are finalized per site.</p></div>
+        </div>
+
+        <div class="faqItem">
+          <button class="faqQ" type="button">Can outsiders use the charger? <span class="chev"></span></button>
+          <div class="faqA"><p>Yes. You can allow hotel guests only or allow public usage too—based on your preference and parking policy.</p></div>
+        </div>
+
+        <div class="faqItem">
+          <button class="faqQ" type="button">Will this overload the Hotel/Community power? <span class="chev"></span></button>
+          <div class="faqA"><p>Destination charging is designed to keep peak load manageable. We do a site check and propose a safe, practical setup.</p></div>
         </div>
       </div>
     </section>
@@ -433,27 +772,91 @@
     <section id="contact" class="section reveal">
       <div class="sectionHead">
         <h2>Contact</h2>
-        <p>Send your property name + city. We’ll propose a simple pilot plan.</p>
+        <p>Interested in destination EV charging? Share a few details and we’ll get back to you.</p>
       </div>
 
       <div class="card">
-        <h3>Partnerships</h3>
-        <p>We’re onboarding early partner properties across AP/TG.</p>
+        <h3>Partnership Enquiry</h3>
+        <p>We’re onboarding early partner locations across India.</p>
 
-        <div class="contactLine">
+        <!-- FORM -->
+        <form
+          action="https://formspree.io/f/mzdepzya"
+          method="POST"
+          style="margin-top:16px"
+        >
+          <div class="grid2">
+            <div>
+              <input
+                type="text"
+                name="property_name"
+                placeholder="Property / Community Name"
+                required
+                style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff"
+              />
+            </div>
+
+            <div>
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                required
+                style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff"
+              />
+            </div>
+
+            <div>
+              <input
+                type="text"
+                name="contact_person"
+                placeholder="Contact Person"
+                required
+                style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff"
+              />
+            </div>
+
+            <div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone / WhatsApp"
+                required
+                style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff"
+              />
+            </div>
+          </div>
+
+          <textarea
+            name="message"
+            placeholder="Anything specific you'd like us to know?"
+            rows="4"
+            style="width:100%;margin-top:12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff"
+          ></textarea>
+
+          <!-- Honeypot (spam protection) -->
+          <input type="text" name="_gotcha" style="display:none">
+
+          <div class="ctaRow" style="margin-top:14px">
+            <button type="submit" class="btn primary">
+              🚀 Submit Enquiry
+            </button>
+            <a class="btn" href="mailto:partnerships@stayncharge.in">
+              ✉️ Email Instead
+            </a>
+          </div>
+        </form>
+
+        <!-- CONTACT INFO -->
+        <div class="contactLine" style="margin-top:16px">
           <span>Email:</span>
-          <a href="mailto:partnerships@stayncharge.in?subject=StayNCharge%20Partnership%20Request">partnerships@stayncharge.in</a>
+          <a href="mailto:partnerships@stayncharge.in">partnerships@stayncharge.in</a>
         </div>
 
-        <div class="ctaRow" style="margin-top:14px">
-          <a class="btn primary" href="mailto:partnerships@stayncharge.in?subject=Request%20a%2015-minute%20call&body=Hi%20Uday%2C%0A%0AProperty%20Name%3A%0ACity%3A%0AContact%20Person%3A%0APhone%3A%0ABest%20time%20to%20connect%3A%0A%0AThanks%2C">Request a 15-minute call</a>
-          <a class="btn" href="#advantages">See why AC works</a>
+        <div class="footer">
+          <div>© <span id="y"></span> StayNCharge</div>
+          <div>⚡ Destination EV charging where you stay and rest</div>
         </div>
-      </div>
-
-      <div class="footer">
-        <div>© <span id="y"></span> StayNCharge</div>
-        <div>Destination EV charging where you stay and rest.</div>
       </div>
     </section>
   </div>
@@ -477,12 +880,42 @@
 
     // scroll reveal
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add("on");
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); });
     }, { threshold: 0.12 });
-
     document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll(".faqItem .faqQ").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.closest(".faqItem");
+        item.classList.toggle("open");
+      });
+    });
+
+    // Image carousel
+    const carousel = document.getElementById('property-carousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function showSlide(index) {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+
+    // Auto-play carousel
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, 4000);
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
   </script>
 </body>
 </html>
