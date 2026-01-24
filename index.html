@@ -536,9 +536,49 @@
       h1{font-size:32px}
       .sub{font-size:16px}
     }
+
+    /* Floating WhatsApp – full SVG button */
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 72px;
+      height: 72px;
+      z-index: 9999;
+    }
+
+    .wa-float img {
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      /* force WhatsApp green if SVG is black */
+      filter: brightness(0) invert(47%) sepia(88%) saturate(446%) hue-rotate(92deg);
+
+      /* glow + depth */
+      filter:
+        drop-shadow(0 14px 28px rgba(37, 211, 102, 0.45))
+        drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .wa-float:hover img {
+      transform: translateY(-3px) scale(1.05);
+    }
   </style>
 </head>
 
+<a
+  href="https://wa.me/917095655665?text=Hi%20StayNCharge%2C%20I%E2%80%99m%20interested%20in%20destination%20EV%20charging.%0A%0AType%3A%20Hotel%20%2F%20Community%0ACity%3A%0AProperty%20Name%3A"
+  class="wa-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat on WhatsApp"
+  title="Chat with StayNCharge on WhatsApp"
+>
+  <img src="assets/whatsapp.svg" alt="WhatsApp">
+</a>
 <body>
   <div class="wrap">
     <div class="topbar">
@@ -594,10 +634,22 @@
           </ul>
 
           <div class="ctaRow">
-            <a class="btn primary" href="mailto:partnerships@stayncharge.in?subject=Partnership%20Inquiry">
-              Get Partnership Details
+            <a class="btn primary"
+              href="https://wa.me/917095655665?text=Hi%20StayNCharge%2C%20I%E2%80%99m%20interested%20in%20destination%20EV%20charging.%0A%0AType%3A%20Hotel%20%2F%20Community%0ACity%3A%0AProperty%20Name%3A"
+              target="_blank"
+              rel="noopener">
+              💬 WhatsApp Us
             </a>
-            <a class="btn" href="#contact">Schedule a 15-min call</a>
+
+            <a class="btn"
+              href="tel:+917095655665">
+              📞 Call Us
+            </a>
+
+            <a class="btn"
+              href="mailto:partnerships@stayncharge.in?subject=StayNCharge%20Partnership%20Inquiry">
+              ✉️ Email
+            </a>
           </div>
         </div>
 
